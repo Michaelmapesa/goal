@@ -1,5 +1,23 @@
-<div>
+<div class="body">
     <h1>
         {{title|uppercase}}
     </h1>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-4"> 
+                <app-quote-form (add)="addedQuote($event)"></app-quote-form>
+            </div>
+            <div class="col-md-8">
+                <div class="cards">
+                    <div *ngFor="let quote of quotes; let i= index" class="card">
+                        <h5 class="card-title">{{quote.title}}{{quote.likes}}<button (click)='displayInfo(i)' class="btn btn-success" id="check">Check more</button> </h5>
+                         <p class="card-text">{{quote.quote}}</p>
+                         <app-quote-detail *ngIf="quote.showInfo" bind-quoty='quote' (isReady)='quoteDelete($event,i)'></app-quote-detail>
+                         <span class="card-subtitle">Posted by: <span id="name">{{quote.postedBy}}</span><span id="date">on:<span id="datecolor">{{quote.datePosted|date:'short'}}</span> </span> </span>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
