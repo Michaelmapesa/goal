@@ -8,7 +8,14 @@
 .body{
     background-color: blue;
     height: 700px;
+    background-attachment: fixed;
 }
 #cardss{
     background-color:yellow;
+}
+#title1{
+    text-align: center;
+    font-weight: bold;
+    font-family: 'Handlee', cursive;
+    
 }
