@@ -2,18 +2,51 @@
     <body ng-app="quote" ng-controller="MainCtrl" >
       <div class="row">
         <div class="col-md-6 col-md-offset-3" id="section1">
-          <form (ngSubmit)="addQuote() ;quotesForm.resetForm({})" #quotesForm="ngForm">
-            <div class="h3">Add quote</div>
-            <input type="text" [(ngModel)]="quoted.postedBy" class="input-group" placeholder="Your name" name="name" >
-             <br>
-            <input type="text" [(ngModel)]="quoted.title" class="input-group" placeholder="Quote title" id="quotetitle" name="quotetitle"><br>
-            
-            <input type="text" [(ngModel)]="quoted.quote" class="input-group" placeholder="Quote" id="quote" name="quote"><br>
-            
-            <input type="text" [(ngModel)]="quoted.author" class="input-group" placeholder="Quoteauthor" id="quoteauthor" name="quoteauthor"><br>
+       <form (ngSubmit)="addQuote() ;quotesForm.resetForm({})" #quotesForm="ngForm">
+             <div class="h3">Add quote</div>
+              <div class="form-group">
+               <input type="text" [(ngModel)]="quoted.postedBy" class="input-group form-control" placeholder="Your name" name="name" id="name" #postedBy='ngModel'minlength="3">
+                <div *ngIf="postedBy.invalid && postedBy.dirty" class="alert alert-danger">
+                   <div *ngIf="postedBy.errors">
+                     Your name is required.
+                   </div>
+                   <div *ngIf="postedBy.errors">
+                    Name is at least 3 characters long.
+                   </div>
+                 </div>
+              </div>
+                <br>
+             <div class="form-group">
+               <input type="text" [(ngModel)]="quoted.title" class="input-group" placeholder="Quote title" id="quotetitle" name="quotetitle" #title='ngModel'>
+               <div *ngIf="title.invalid && title.dirty" class="alert alert-danger">
+                 <div *ngIf="title.errors">
+                     Title is required.
+                 </div>
+               </div>
+             </div>
+               <br>
+             <div class="form-group">
+               <input type="text" [(ngModel)]="quoted.quote" class="input-group" placeholder="Quote" id="quote" name="quote" #quote='ngModel'>
+               <div *ngIf="quote.invalid && quote.dirty" class="alert alert-danger">
+                 <div *ngIf="quote.errors">
+                     Quote can not be empty.
+                 </div>
+               </div>
+             </div>
+               <br>
+
+             <div class="form-group">
+               <input type="text" [(ngModel)]="quoted.author" class="input-group" placeholder="Quoteauthor" id="quoteauthor" name="quoteauthor" #author='ngModel'>
+               <div *ngIf="title.invalid && title.dirty" class="alert alert-danger">
+                 <div *ngIf="title.errors">
+                     Author Name is required.
+                 </div>
+               </div>
+             </div>
+               <br>
             
             <button type="submit" class="btn btn-sm btn-success" id="btn5">Add Quote</button>
-          </form>
+       </form>
          
          
         </div>
